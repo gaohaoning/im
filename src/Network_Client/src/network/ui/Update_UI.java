@@ -28,9 +28,7 @@ import java.awt.event.MouseEvent;
 
 public class Update_UI
 {
-	// ======================================================================
 	public Network_Client network_Client;
-	// ======================================================================
 	public JFrame frame;
 	
 	public JTextField textField_id;
@@ -49,7 +47,6 @@ public class Update_UI
 	
 	public JTextArea textArea;
 	public JScrollPane scrollPane;
-	// ======================================================================
 
 	/**
 	 * Launch the application.
@@ -78,7 +75,7 @@ public class Update_UI
 	public Update_UI()
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -88,7 +85,7 @@ public class Update_UI
 		this.network_Client = network_Client;
 		
 		initialize();
-		frame.setVisible(false);//============================================
+		frame.setVisible(false);//
 	}
 	
 	public Update_UI(Network_Client network_Client,String user_ID)
@@ -96,12 +93,10 @@ public class Update_UI
 		this.network_Client = network_Client;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 		textField_id.setText(user_ID);
 	}
 	
-	// ===================================================================
-	// ===================================================================
 
 	/**
 	 * Initialize the contents of the frame.
@@ -113,7 +108,6 @@ public class Update_UI
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("修改用户信息");
-		// ===================================================================
 		label_id = new JLabel("账号");
 		label_id.setBounds(20, 30, 60, 30);
 		label_id.setHorizontalAlignment(SwingConstants.CENTER);
@@ -133,7 +127,6 @@ public class Update_UI
 		label_key.setBounds(20, 150, 60, 30);
 		label_key.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(label_key);
-		//===================================================================
 		textField_id = new JTextField();
 		textField_id.setEditable(false);
 		textField_id.setBounds(80, 30, 200, 30);
@@ -157,14 +150,12 @@ public class Update_UI
 		frame.getContentPane().add(textField_key);
 		textField_key.setColumns(10);
 		textField_key.setText("edcba");
-		//===================================================================
 		button_send_update = new JButton("更新");
 		button_send_update.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				//#######################################################
 				//先本地检查 编码策略
 				if(!network_Client.codec.check_codepolicy(textField_key.getText()))
 				{
@@ -191,7 +182,6 @@ public class Update_UI
 					network_Client.on_Button_Send_Update(update_Info);
 					frame.setVisible(false);
 				}
-				//#######################################################				
 			}
 		});
 		button_send_update.addActionListener(new ActionListener()
@@ -216,7 +206,6 @@ public class Update_UI
 		button_cancel.setBounds(150, 250, 130, 30);
 		frame.getContentPane().add(button_cancel);
 			
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -228,13 +217,6 @@ public class Update_UI
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
-		
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
 	}
 }
 

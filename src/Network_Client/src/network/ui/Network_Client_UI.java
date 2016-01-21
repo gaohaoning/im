@@ -38,9 +38,7 @@ import java.util.Vector;
 
 public class Network_Client_UI
 {
-	// ======================================================================
 	public Network_Client network_Client;
-	// ======================================================================
 	public JFrame frame;
 	
 	public JTextArea textArea;
@@ -69,12 +67,10 @@ public class Network_Client_UI
 	public JTextArea textArea_recieverID;
 	
 	public JButton button_Edit;
-	// ======================================================================
 
 	/**
 	 * Launch the application.
 	 */
-	//================================================================
 	//这里是为了此UI程序能够独立运行 如果此UI依附于其他类则不需执行这个
 	//在其他类中构建UI对象时 main() 函数不被执行
 	public static void main(String[] args)
@@ -85,10 +81,8 @@ public class Network_Client_UI
 			{
 				try
 				{
-					//================================================================
 					Network_Client_UI window = new Network_Client_UI();
 					window.frame.setVisible(true);
-					//================================================================
 				} catch (Exception e)
 				{
 					e.printStackTrace();
@@ -96,7 +90,6 @@ public class Network_Client_UI
 			}
 		});
 	}
-	//================================================================
 
 	/**
 	 * Create the application.
@@ -104,44 +97,33 @@ public class Network_Client_UI
 	public Network_Client_UI()
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	public Network_Client_UI(Network_Client network_Client)
 	{
 		this.network_Client = network_Client;
 		
 		initialize();
-		frame.setVisible(false);//============================================
+		frame.setVisible(false);//
 	}
-	// #######################################################################
 	public void show(String string)
 	{
 		this.textArea.append(string+"\n");
 		//添加滚动条自动滚动到底//此方法最简单 OK
-		// =========================================================
 		this.textArea.setSelectionStart(this.textArea.getText().length());
-		// =========================================================
 	}
-	// #######################################################################
-	// #######################################################################
 	public void show_(String string)//不换行输出
 	{
 		this.textArea.append(string);
 		//添加滚动条自动滚动到底//此方法最简单 OK
-		// =========================================================
 		this.textArea.setSelectionStart(this.textArea.getText().length());
-		// =========================================================
 	}
-	// #######################################################################
 	public void show_Chat(String string)
 	{
 		this.textArea_Chat.append(string+"\n");
 		//添加滚动条自动滚动到底//此方法最简单 OK
-		// =========================================================
 		this.textArea_Chat.setSelectionStart(this.textArea_Chat.getText().length());
-		// =========================================================
 	}
-	// #######################################################################
 	public void update_List_Reg(Vector<Client_Info> vector)
 	{
 		try
@@ -158,7 +140,6 @@ public class Network_Client_UI
 			show("update_List_Reg 异常");
 		}
 	}
-	// #######################################################################
 	public void update_List_Online(Vector<Client_Info> vector)
 	{
 		try
@@ -175,7 +156,6 @@ public class Network_Client_UI
 			show("update_List_Online 异常");
 		}
 	}
-	// #######################################################################
 
 	/**
 	 * Initialize the contents of the frame.
@@ -188,7 +168,6 @@ public class Network_Client_UI
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Client");
 		
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -198,8 +177,6 @@ public class Network_Client_UI
 		scrollPane = new JScrollPane(textArea);
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
-		//===================================================================
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea_Chat = new JTextArea();
 		textArea_Chat.setEditable(false);
@@ -209,8 +186,6 @@ public class Network_Client_UI
 		scrollPane_Chat = new JScrollPane(textArea_Chat);
 		scrollPane_Chat.setAutoscrolls(true);
 		scrollPane_Chat.setAutoscrolls(true);
-		//===================================================================
-		// ###################################################################
 		tabbedPane_Info = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_Info.setBounds(10, 10, 500, 300);
 		frame.getContentPane().add(tabbedPane_Info);
@@ -218,10 +193,7 @@ public class Network_Client_UI
 		tabbedPane_Info.addTab("信息", null, scrollPane, null);
 		tabbedPane_Info.addTab("会话", null, scrollPane_Chat, null);
 		tabbedPane_Info.setSelectedComponent(scrollPane_Chat);//客户端默认只显示会话信息
-		// ###################################################################
-		//===================================================================
 		
-		//===================================================================
 		//JList 是 DefaultListModel 的容器
 		defaultListModel_online=new DefaultListModel();
 		defaultListModel_online.addElement("在线用户列表");
@@ -240,11 +212,9 @@ public class Network_Client_UI
 //				String clientName=temp[1];
 //				textArea_recieverID.setText(clientID+":"+clientName+":"+"["+Integer.toString(index)+"]");
 				
-				//===================================================================
 				int index=list_online.getSelectedIndex();
 				String string_ID_Name=network_Client.get_Client_ID_Name_from_Str_Online_By_Index(index);
 				textArea_recieverID.setText(string_ID_Name+":"+"["+Integer.toString(index)+"]");
-				//===================================================================
 			}
 		});
 		list_online.addListSelectionListener(new ListSelectionListener()
@@ -258,10 +228,6 @@ public class Network_Client_UI
 		scrollPane_online = new JScrollPane(list_online);
 		scrollPane_online.setAutoscrolls(true);
 		scrollPane_online.setAutoscrolls(true);
-		//===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 		// JList 是 DefaultListModel 的容器
 		defaultListModel_reg = new DefaultListModel();
 		defaultListModel_reg.addElement("注册用户列表");
@@ -280,11 +246,9 @@ public class Network_Client_UI
 //				String clientName=temp[1];
 //				textArea_recieverID.setText(clientID+":"+clientName+":"+"["+Integer.toString(index)+"]");
 				
-				//===================================================================
 				int index=list_reg.getSelectedIndex();
 				String string_ID_Name=network_Client.get_Client_ID_Name_from_Str_Reg_By_Index(index);
 				textArea_recieverID.setText(string_ID_Name+":"+"["+Integer.toString(index)+"]");
-				//===================================================================
 			}
 		});
 		list_reg.addListSelectionListener(new ListSelectionListener()
@@ -298,20 +262,12 @@ public class Network_Client_UI
 		scrollPane_reg = new JScrollPane(list_reg);		
 		scrollPane_reg.setAutoscrolls(true);
 		scrollPane_reg.setAutoscrolls(true);
-		// ===================================================================
-		// ###################################################################
 		tabbedPane_List = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_List.setBounds(520, 10, 220, 300);
 		frame.getContentPane().add(tabbedPane_List);
 
 		tabbedPane_List.addTab("在线用户", null, scrollPane_online, null);
 		tabbedPane_List.addTab("注册用户", null, scrollPane_reg, null);
-		// ###################################################################
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		// ===================================================================		
 		textField_send = new JTextField();
 		textField_send.setBounds(10, 320, 380, 30);
 		frame.getContentPane().add(textField_send);
@@ -356,9 +312,6 @@ public class Network_Client_UI
 		button_send.setBounds(410, 320, 100, 30);
 		frame.getContentPane().add(button_send);
 
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================		
 		textField_send_codec = new JTextField();
 		textField_send_codec.setBounds(10, 360, 380, 30);
 		frame.getContentPane().add(textField_send_codec);
@@ -441,8 +394,6 @@ public class Network_Client_UI
 		frame.getContentPane().add(button_send_codec);
 		
 
-		// ===================================================================
-		// ===================================================================
 		textArea_recieverID = new JTextArea();
 		textArea_recieverID.setEditable(false);
 		textArea_recieverID.setBackground(Color.LIGHT_GRAY);
@@ -450,9 +401,6 @@ public class Network_Client_UI
 		textArea_recieverID.setBounds(520, 320, 220, 30);
 		//textArea_recieverID.setText("接收者");
 		frame.getContentPane().add(textArea_recieverID);
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 		button_Edit = new JButton("更新用户信息");
 		button_Edit.addActionListener(new ActionListener()
 		{
@@ -464,15 +412,9 @@ public class Network_Client_UI
 		});
 		button_Edit.setBounds(520, 360, 220, 30);
 		frame.getContentPane().add(button_Edit);
-		// ===================================================================
-		// ===================================================================
 		//初始状态让 [发送明文按钮]获取焦点
 		frame.getRootPane().setDefaultButton(button_send);//按钮获取焦点
-		// ===================================================================
-		// ===================================================================
 	}
-	// ===================================================================
-	// ===================================================================
 	public String get_ReceiverID_from_textArea_recieverID()
 	{
 		if(textArea_recieverID.getText().equals(""))
@@ -484,7 +426,6 @@ public class Network_Client_UI
 		String [] temp=textArea_recieverID.getText().split(":");
 		return temp[0];//返回被":"分隔的第一个String
 	}
-	// ===================================================================
 	public String get_ReceiverName_from_textArea_recieverID()
 	{
 		if(textArea_recieverID.getText().equals(""))
@@ -496,6 +437,4 @@ public class Network_Client_UI
 		String [] temp=textArea_recieverID.getText().split(":");
 		return temp[1];//返回被":"分隔的第二个String
 	}
-	// ===================================================================
-	// ===================================================================
 }

@@ -37,9 +37,7 @@ import java.util.Vector;
 
 public class Network_Server_UI
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	private JFrame frame;
 	
 	public JTextArea textArea;
@@ -65,7 +63,6 @@ public class Network_Server_UI
 	
 	public JTextArea textArea_recieverID;
 	
-	// #######################################################################
 	JMenuBar menuBar;
 	JMenu mnUserdata;	
 	JMenuItem mntmImport;	
@@ -75,12 +72,10 @@ public class Network_Server_UI
 	
 	JMenu mn_Network;	
 	JMenuItem mn_Network_Config;
-	// #######################################################################
 
 	/**
 	 * Launch the application.
 	 */
-	//================================================================
 	//这里是为了此UI程序能够独立运行 如果此UI依附于其他类则不需执行这个
 	//在其他类中构建UI对象时 main() 函数不被执行
 	public static void main(String[] args)
@@ -91,10 +86,8 @@ public class Network_Server_UI
 			{
 				try
 				{
-					//================================================================
 					Network_Server_UI window = new Network_Server_UI();
 					window.frame.setVisible(true);
-					//================================================================
 				} catch (Exception e)
 				{
 					e.printStackTrace();
@@ -102,7 +95,6 @@ public class Network_Server_UI
 			}
 		});
 	}
-	//================================================================
 
 	/**
 	 * Create the application.
@@ -119,30 +111,20 @@ public class Network_Server_UI
 		initialize();
 		frame.setVisible(true);
 		
-		//==================================
 		textArea.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
-		//==================================
 	}
-	// #######################################################################
 	public void show(String string)
 	{
 		this.textArea.append(string+"\n");
 		//添加滚动条自动滚动到底//此方法最简单 OK
-		// =========================================================
 		this.textArea.setSelectionStart(this.textArea.getText().length());
-		// =========================================================
 	}
-	// #######################################################################
-	// #######################################################################
 	public void show_(String string)//不换行输出
 	{
 		this.textArea.append(string);
 		//添加滚动条自动滚动到底//此方法最简单 OK
-		// =========================================================
 		this.textArea.setSelectionStart(this.textArea.getText().length());
-		// =========================================================
 	}
-	// #######################################################################
 	public void update_List_Reg(Vector<Client_Info> vector)
 	{
 		try
@@ -159,7 +141,6 @@ public class Network_Server_UI
 			show("update_List_Reg 异常");
 		}
 	}
-	// #######################################################################
 	public void update_List_Online(Vector<Client_Info> vector)
 	{
 		try
@@ -176,9 +157,6 @@ public class Network_Server_UI
 			show("update_List_Online 异常");
 		}
 	}
-	// #######################################################################
-	// #######################################################################
-	// #######################################################################
 
 	/**
 	 * Initialize the contents of the frame.
@@ -191,11 +169,9 @@ public class Network_Server_UI
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Server");
 		
-		// #######################################################################
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		// #######################################################################
 		mn_Network = new JMenu("网络");
 		menuBar.add(mn_Network);
 		
@@ -208,7 +184,6 @@ public class Network_Server_UI
 			}
 		});
 		mn_Network.add(mn_Network_Config);
-		// #######################################################################
 		
 		mnUserdata = new JMenu("用户数据");
 		menuBar.add(mnUserdata);
@@ -259,8 +234,6 @@ public class Network_Server_UI
 			}
 		});
 		mnAbout.add(mntmInf);
-		// #######################################################################
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -269,16 +242,12 @@ public class Network_Server_UI
 		scrollPane = new JScrollPane(textArea);		
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
-		//===================================================================
-		// ###################################################################
 		tabbedPane_Info = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_Info.setBounds(10, 10, 500, 300);
 		frame.getContentPane().add(tabbedPane_Info);
 
 		tabbedPane_Info.addTab("信息", null, scrollPane, null);
 		//tabbedPane_Info.addTab("用户资料", null, scrollPane, null);
-		// ###################################################################
-		//===================================================================
 		//JList 是 DefaultListModel 的容器
 		defaultListModel_online=new DefaultListModel();
 		list = new JList(defaultListModel_online);
@@ -305,9 +274,7 @@ public class Network_Server_UI
 		scrollPane_online = new JScrollPane(list);
 		scrollPane_online.setAutoscrolls(true);
 		scrollPane_online.setAutoscrolls(true);
-		//===================================================================
 		
-		// ===================================================================
 		// JList 是 DefaultListModel 的容器
 		defaultListModel_reg = new DefaultListModel();
 		list_reg = new JList(defaultListModel_reg);
@@ -334,17 +301,12 @@ public class Network_Server_UI
 		scrollPane_reg = new JScrollPane(list_reg);
 		scrollPane_reg.setAutoscrolls(true);
 		scrollPane_reg.setAutoscrolls(true);
-		// ===================================================================
-		//###################################################################
 		tabbedPane_List = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_List.setBounds(520, 10, 220, 300);
 		frame.getContentPane().add(tabbedPane_List);
 		
 		tabbedPane_List.addTab("在线用户", null, scrollPane_online, null);
 		tabbedPane_List.addTab("注册用户", null, scrollPane_reg, null);
-		//###################################################################
-		// ===================================================================
-		// ===================================================================		
 		textField_broadcast = new JTextField();
 		textField_broadcast.setBounds(10, 320, 380, 30);
 		frame.getContentPane().add(textField_broadcast);
@@ -371,7 +333,6 @@ public class Network_Server_UI
 		});
 		button_broadcast.setBounds(410, 320, 100, 30);
 		frame.getContentPane().add(button_broadcast);
-		// ===================================================================
 		button_Detail = new JButton("用户资料");
 		button_Detail.addActionListener(new ActionListener()
 		{
@@ -379,33 +340,22 @@ public class Network_Server_UI
 			public void actionPerformed(ActionEvent e)
 			{
 				//(1)
-				//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				//network_Server.detail_Info_UI.frame.setVisible(true);
 				//旧版本在新窗口中显示 detail 现在改成在 TabbledPane 中显示
-				//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				Container container_Detail=network_Server.detail_Reg_Info_UI.frame.getContentPane();
 				tabbedPane_Info.addTab("注册资料", null, container_Detail, null);				
 				tabbedPane_Info.setSelectedIndex(1);
-				//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				
 				//(2)
-				//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				Container container_Detail_Online=network_Server.detail_Online_Info_UI.frame.getContentPane();
 				tabbedPane_Info.addTab("在线用户", null, container_Detail_Online, null);
 				tabbedPane_Info.setSelectedIndex(2);
-				//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				
-				// ==========================================================
 				//这个按钮用来【刷新 Online IP Port 信息】
-				// ==========================================================
 			}
 		});
 		button_Detail.setBounds(630, 320, 110, 30);
 		frame.getContentPane().add(button_Detail);
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 		button_Kickout = new JButton("踢出");
 		button_Kickout.addActionListener(new ActionListener()
 		{
@@ -419,23 +369,15 @@ public class Network_Server_UI
 		});
 		button_Kickout.setBounds(520, 320, 110, 30);
 		frame.getContentPane().add(button_Kickout);
-		// ===================================================================
-		// ===================================================================
 		textArea_recieverID = new JTextArea();
 		textArea_recieverID.setEditable(false);
 		textArea_recieverID.setBackground(Color.LIGHT_GRAY);
 		textArea_recieverID.setAutoscrolls(true);
 		textArea_recieverID.setBounds(520, 360, 220, 30);
 		frame.getContentPane().add(textArea_recieverID);
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 	}
 	
 	
-	// ===================================================================
 	public String get_ReceiverID_from_textArea_recieverID()
 	{
 		if(textArea_recieverID.getText().equals(""))
@@ -447,5 +389,4 @@ public class Network_Server_UI
 		String [] temp=textArea_recieverID.getText().split(":");//注意此处在结尾增加了 " "
 		return temp[0];//返回被":"分隔的第一个String
 	}
-	// ===================================================================
 }

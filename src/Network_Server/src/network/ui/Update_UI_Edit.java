@@ -30,9 +30,7 @@ import java.awt.event.MouseEvent;
 
 public class Update_UI_Edit
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	public JFrame frame;
 	
 	public JTextField textField_id;
@@ -51,12 +49,9 @@ public class Update_UI_Edit
 	
 	public JTextArea textArea;
 	public JScrollPane scrollPane;
-	// ======================================================================
-	// ========================================
 	public int index_To_Replace;
 	public Server_Thread server_Thread_To_Notify_Change;
 	public boolean is_This_User_Online;
-	// ========================================
 
 	/**
 	 * Launch the application.
@@ -85,7 +80,7 @@ public class Update_UI_Edit
 	public Update_UI_Edit()
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -95,7 +90,7 @@ public class Update_UI_Edit
 		this.network_Server = network_Server;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	
 	public Update_UI_Edit(Network_Server network_Server,String user_ID)
@@ -103,7 +98,7 @@ public class Update_UI_Edit
 		this.network_Server = network_Server;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 		textField_id.setText(user_ID);
 	}
 	
@@ -123,7 +118,6 @@ public class Update_UI_Edit
 		textField_name.setText(client_Info_To_Set.Name);
 		textField_key.setText(client_Info_To_Set.Key);
 		
-		//#############################################################################
 		//在构造函数中先得到这个线程 然后资料有所修改时用这个线程通告该用户
 		if(network_Server.is_Client_Already_Online_by_ID(network_Server.infos_Reg.elementAt(index).ID))//要修改资料的用户正在线
 		{
@@ -134,11 +128,8 @@ public class Update_UI_Edit
 		{
 			is_This_User_Online=false;
 		}
-		//#############################################################################
 	}
 	
-	// ===================================================================
-	// ===================================================================
 
 	/**
 	 * Initialize the contents of the frame.
@@ -150,7 +141,6 @@ public class Update_UI_Edit
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("修改用户信息");
-		// ===================================================================
 		label_id = new JLabel("账号");
 		label_id.setBounds(20, 30, 60, 30);
 		label_id.setHorizontalAlignment(SwingConstants.CENTER);
@@ -170,7 +160,6 @@ public class Update_UI_Edit
 		label_key.setBounds(20, 150, 60, 30);
 		label_key.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(label_key);
-		//===================================================================
 		textField_id = new JTextField();
 		textField_id.setBounds(80, 30, 200, 30);
 		frame.getContentPane().add(textField_id);
@@ -194,7 +183,6 @@ public class Update_UI_Edit
 		frame.getContentPane().add(textField_key);
 		textField_key.setColumns(10);
 		textField_key.setText("edcba");
-		//===================================================================
 		button_send_update_EDIT = new JButton("修改");
 		button_send_update_EDIT.addMouseListener(new MouseAdapter()
 		{
@@ -208,7 +196,6 @@ public class Update_UI_Edit
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				//#######################################################
 				//先本地检查 编码策略
 				if (!network_Server.codec.check_codepolicy(textField_key.getText()))
 				{
@@ -247,28 +234,18 @@ public class Update_UI_Edit
 				{
 					server_Thread_To_Notify_Change.client_Info_Thread=network_Server.infos_Reg.elementAt(index_To_Replace);
 				}
-				//==========================================================
 				network_Server.network_Server_UI.tabbedPane_Info.updateUI();//用此方法立即刷新列表 无延迟
-				//==========================================================
-				//==========================================================
 				network_Server.network_Server_UI.update_List_Online(network_Server.infos_Online);
 				network_Server.network_Server_UI.update_List_Reg(network_Server.infos_Reg);
-				//==========================================================
-				//==========================================================
 				network_Server.send_Broadcast_Client_Info_Online_Reg();
-				//==========================================================
 				//让该用户更新自己的本地资料
-				//#############################################################################
 				if(is_This_User_Online)
 				{
 					Msg msg_Update_Info=new Msg(Msg_Type.user_data_update);
 					msg_Update_Info.msg_Update_Info=update_Info;
 					server_Thread_To_Notify_Change.send_Unicast(msg_Update_Info);					
 				}
-				//#############################################################################
-				//==========================================================
 				frame.setVisible(false);
-				// #######################################################	
 			}
 		});
 		button_send_update_EDIT.setBounds(20, 250, 130, 30);
@@ -286,7 +263,6 @@ public class Update_UI_Edit
 		button_cancel.setBounds(150, 250, 130, 30);
 		frame.getContentPane().add(button_cancel);
 			
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -298,13 +274,7 @@ public class Update_UI_Edit
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
 		
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
 	}
 }
 

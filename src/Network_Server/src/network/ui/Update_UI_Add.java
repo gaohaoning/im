@@ -29,9 +29,7 @@ import java.awt.event.MouseEvent;
 
 public class Update_UI_Add
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	public JFrame frame;
 	
 	public JTextField textField_id;
@@ -50,7 +48,6 @@ public class Update_UI_Add
 	
 	public JTextArea textArea;
 	public JScrollPane scrollPane;
-	// ======================================================================
 
 	/**
 	 * Launch the application.
@@ -79,7 +76,7 @@ public class Update_UI_Add
 	public Update_UI_Add()
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -89,7 +86,7 @@ public class Update_UI_Add
 		this.network_Server = network_Server;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	
 	public Update_UI_Add(Network_Server network_Server,String user_ID)
@@ -97,12 +94,10 @@ public class Update_UI_Add
 		this.network_Server = network_Server;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 		textField_id.setText(user_ID);
 	}
 	
-	// ===================================================================
-	// ===================================================================
 
 	/**
 	 * Initialize the contents of the frame.
@@ -114,7 +109,6 @@ public class Update_UI_Add
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("修改用户信息");
-		// ===================================================================
 		label_id = new JLabel("账号");
 		label_id.setBounds(20, 30, 60, 30);
 		label_id.setHorizontalAlignment(SwingConstants.CENTER);
@@ -134,7 +128,6 @@ public class Update_UI_Add
 		label_key.setBounds(20, 150, 60, 30);
 		label_key.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(label_key);
-		//===================================================================
 		textField_id = new JTextField();
 		textField_id.setBounds(80, 30, 200, 30);
 		frame.getContentPane().add(textField_id);
@@ -158,7 +151,6 @@ public class Update_UI_Add
 		frame.getContentPane().add(textField_key);
 		textField_key.setColumns(10);
 		textField_key.setText("edcba");
-		//===================================================================
 		button_send_update_ADD = new JButton("增加");
 		button_send_update_ADD.addMouseListener(new MouseAdapter()
 		{
@@ -172,7 +164,6 @@ public class Update_UI_Add
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				//#######################################################
 				//先本地检查 编码策略
 				if (!network_Server.codec.check_codepolicy(textField_key.getText()))
 				{
@@ -201,17 +192,11 @@ public class Update_UI_Add
 
 				network_Server.infos_Reg.addElement(client_Info_Add);
 				
-				//==========================================================
 				network_Server.network_Server_UI.tabbedPane_Info.updateUI();//用此方法立即刷新列表 无延迟
-				//==========================================================
-				//==========================================================
 				network_Server.network_Server_UI.update_List_Online(network_Server.infos_Online);
 				network_Server.network_Server_UI.update_List_Reg(network_Server.infos_Reg);
-				//==========================================================
 				network_Server.send_Broadcast_Client_Info_Online_Reg();
-				//==========================================================
 				frame.setVisible(false);
-				// #######################################################
 			}
 		});
 		button_send_update_ADD.setBounds(20, 250, 130, 30);
@@ -229,7 +214,6 @@ public class Update_UI_Add
 		button_cancel.setBounds(150, 250, 130, 30);
 		frame.getContentPane().add(button_cancel);
 			
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -241,13 +225,7 @@ public class Update_UI_Add
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
 		
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
 	}
 }
 

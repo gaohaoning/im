@@ -22,9 +22,7 @@ import javax.swing.JTextArea;
 
 public class Login_UI
 {
-	// ======================================================================
 	public Network_Client network_Client;
-	// ======================================================================
 	public JFrame frame;
 	public JTextField textField_ip;
 	public JTextField textField_port;
@@ -43,7 +41,6 @@ public class Login_UI
 	
 	public JTextArea textArea;
 	public JScrollPane scrollPane;
-	// ======================================================================
 
 	/**
 	 * Launch the application.
@@ -83,17 +80,12 @@ public class Login_UI
 		frame.setVisible(true);
 		set_Default_Info();
 	}
-	// #######################################################################
 	public void show(String string)
 	{
 		this.textArea.append(string+"\n");
 		// 添加滚动条自动滚动到底//此方法最简单 OK
-		// =========================================================
 		this.textArea.setSelectionStart(this.textArea.getText().length());
-		// =========================================================
 	}
-	// #######################################################################
-	// ===================================================================
 	public void set_Default_Info()
 	{
 		textField_ip.setText("127.0.0.1");
@@ -101,7 +93,6 @@ public class Login_UI
 		textField_id.setText("");
 		passwordField.setText("000");
 	}
-	// ===================================================================
 
 	/**
 	 * Initialize the contents of the frame.
@@ -113,7 +104,6 @@ public class Login_UI
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("登陆服务器");
-		// ===================================================================
 		label_ip = new JLabel("地址");
 		label_ip.setBounds(20, 30, 60, 30);
 		label_ip.setHorizontalAlignment(SwingConstants.CENTER);
@@ -138,7 +128,6 @@ public class Login_UI
 		label_password.setBounds(20, 190, 60, 30);
 		label_password.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(label_password);
-		//===================================================================
 		textField_ip = new JTextField();
 		textField_ip.setBounds(80, 30, 200, 30);
 		frame.getContentPane().add(textField_ip);
@@ -164,7 +153,6 @@ public class Login_UI
 		passwordField = new JPasswordField();
 		passwordField.setBounds(80, 190, 200, 30);
 		frame.getContentPane().add(passwordField);
-		//===================================================================
 		button_login = new JButton("登录");
 		button_login.addActionListener(new ActionListener()
 		{
@@ -199,7 +187,6 @@ public class Login_UI
 		});
 		button_login.setBounds(20, 250, 130, 30);
 		frame.getContentPane().add(button_login);
-		//===================================================================
 		button_register = new JButton("注册");
 		button_register.addActionListener(new ActionListener()
 		{
@@ -233,7 +220,6 @@ public class Login_UI
 		});
 		button_register.setBounds(150, 250, 130, 30);
 		frame.getContentPane().add(button_register);
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -245,13 +231,6 @@ public class Login_UI
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
 		
-		
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
 	}
 }

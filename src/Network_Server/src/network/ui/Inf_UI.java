@@ -14,9 +14,7 @@ import java.awt.event.ActionEvent;
 
 public class Inf_UI
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	public JFrame frame;
 	public JTextArea textArea;
 	public JButton button_OK;
@@ -75,7 +73,6 @@ public class Inf_UI
 		//此处【注释掉】是不想让此UI被关闭时主程序也被关闭
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		//===================================================================
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBackground(Color.LIGHT_GRAY);
@@ -86,7 +83,6 @@ public class Inf_UI
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
 		
 		button_OK = new JButton("OK");
 		button_OK.addActionListener(new ActionListener()

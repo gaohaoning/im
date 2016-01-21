@@ -30,9 +30,7 @@ import java.awt.event.MouseEvent;
 
 public class Update_UI_Search
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	public JFrame frame;
 	
 	public JTextField textField_id;
@@ -53,11 +51,8 @@ public class Update_UI_Search
 	
 	public JTextArea textArea;
 	public JScrollPane scrollPane;
-	// ======================================================================
-	// ========================================
 	public int index_To_Replace;
 	public Server_Thread server_Thread_To_Notify_Change;
-	// ========================================
 
 	/**
 	 * Launch the application.
@@ -86,7 +81,7 @@ public class Update_UI_Search
 	public Update_UI_Search()
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -96,7 +91,7 @@ public class Update_UI_Search
 		this.network_Server = network_Server;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 		
 		frame.getRootPane().setDefaultButton(button_send_update_SEARCH);//按钮获取焦点
 	}
@@ -117,14 +112,10 @@ public class Update_UI_Search
 		textField_name.setText(client_Info_To_Set.Name);
 		textField_key.setText(client_Info_To_Set.Key);
 		
-		//#############################################################################
 		//在构造函数中先得到这个线程 然后资料有所修改时用这个线程通告该用户
 		server_Thread_To_Notify_Change=network_Server.get_Server_Thread_by_Client_ID(client_Info_To_Set.ID);
-		//#############################################################################
 	}
 	
-	// ===================================================================
-	// ===================================================================
 
 	/**
 	 * Initialize the contents of the frame.
@@ -136,7 +127,6 @@ public class Update_UI_Search
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("修改用户信息");
-		// ===================================================================
 		label_id = new JLabel("账号");
 		label_id.setBounds(20, 140, 60, 30);
 		label_id.setHorizontalAlignment(SwingConstants.CENTER);
@@ -156,7 +146,6 @@ public class Update_UI_Search
 		label_key.setBounds(20, 260, 60, 30);
 		label_key.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(label_key);
-		//===================================================================
 		textField_id = new JTextField();
 		textField_id.setEditable(false);
 		textField_id.setBounds(80, 140, 200, 30);
@@ -180,7 +169,6 @@ public class Update_UI_Search
 		textField_key.setBounds(80, 260, 200, 30);
 		frame.getContentPane().add(textField_key);
 		textField_key.setColumns(10);
-		//===================================================================
 		button_send_update_SEARCH = new JButton("搜索");
 		button_send_update_SEARCH.addMouseListener(new MouseAdapter()
 		{
@@ -194,7 +182,6 @@ public class Update_UI_Search
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				//===================================================================
 				String search_Key=textField_search_key.getText();
 				for(int i=0;i<network_Server.infos_Reg.size();i++)
 				{
@@ -210,7 +197,6 @@ public class Update_UI_Search
 				}
 				//network_Server.show_UI_Dialog("找不到相关用户信息");
 				network_Server.show_Msg("", "找不到相关用户信息");
-				//===================================================================
 			}
 		});
 		button_send_update_SEARCH.setBounds(20, 90, 130, 30);
@@ -228,7 +214,6 @@ public class Update_UI_Search
 		button_cancel.setBounds(150, 90, 130, 30);
 		frame.getContentPane().add(button_cancel);
 			
-		//===================================================================
 		//JScrollPane 是 JTextArea 的容器
 		textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -240,9 +225,7 @@ public class Update_UI_Search
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
 		
-		//===================================================================
 		label_search_key = new JLabel("关键词：(ID 或 名称 结果在下面显示)");
 		label_search_key.setBounds(20, 10, 260, 30);
 		label_search_key.setHorizontalAlignment(SwingConstants.CENTER);
@@ -253,10 +236,6 @@ public class Update_UI_Search
 		frame.getContentPane().add(textField_search_key);
 		textField_search_key.setColumns(10);
 		
-		//===================================================================
-		//===================================================================
-		//===================================================================
-		//===================================================================
 	}
 }
 

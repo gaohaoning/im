@@ -28,9 +28,7 @@ import java.awt.event.MouseListener;
 
 public class Detail_Online_Info_UI
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	public JFrame frame;
 	
 	public AbstractTableModel abstractTableModel;
@@ -39,7 +37,6 @@ public class Detail_Online_Info_UI
 	
 	//public Vector<Client_Info> vector_UI;
 	public Vector<Server_Thread> vector_UI;
-	// ======================================================================
 	/**
 	 * Launch the application.
 	 */
@@ -54,13 +51,11 @@ public class Detail_Online_Info_UI
 					//表格显示分为【自己显示】和【被主程序显示】两种
 					//前者在static main 方法里初始化 Vector
 					//后者在构造函数里初始化 Vector
-//					//==============================================================
 //					final Vector<String> vector_UI=new Vector<String>();
 //					for(int i=0;i<20;i++)
 //					{
 //						vector_UI.addElement(Integer.toString(i));
 //					}
-//					//==============================================================
 					Detail_Online_Info_UI window = new Detail_Online_Info_UI();
 					window.frame.setVisible(true);
 				} catch (Exception e)
@@ -99,9 +94,6 @@ public class Detail_Online_Info_UI
 		//此处【注释掉】是不想让此UI被关闭时主程序也被关闭
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		//===================================================================
-		//===================================================================
-		//===================================================================
 		abstractTableModel=new AbstractTableModel()
 		{
 			@Override
@@ -137,7 +129,6 @@ public class Detail_Online_Info_UI
 				// TODO Auto-generated method stub
 				return 3;//竖排显示4列资料 暂时
 			}
-			//======================================================
 			@Override
 			public void addTableModelListener(TableModelListener l)
 			{
@@ -180,9 +171,7 @@ public class Detail_Online_Info_UI
 		table.setGridColor(Color.BLACK);
 		table.setAutoscrolls(true);
 		table.setShowGrid(true);
-		//==============================================
 		//table.getSelectedRow();
-		//==============================================
 		
 		scrollPane = new JScrollPane(table);// scrollPane 包含 table
 		//scrollPane.setBounds(10, 10, 420, 200);
@@ -190,14 +179,6 @@ public class Detail_Online_Info_UI
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 		
 	}
 }

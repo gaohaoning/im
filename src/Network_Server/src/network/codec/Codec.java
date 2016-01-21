@@ -12,13 +12,9 @@ public class Codec implements Serializable
 	char QWE_coding_table[]={'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'};
 	char QWE_decoded_table[]={'k','x','v','m','c','n','o','p','h','q','r','s','z','y','i','j','a','d','l','e','g','w','b','u','f','t'};
 
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
-	//==========================================
 	char codepolicy[]=new char[100];
 	char messages[]=new char[1000];
-	//==========================================
 	
 	public String Code(String codepolicy_string,String messages_string)
 	{		
@@ -40,8 +36,6 @@ public class Codec implements Serializable
 		return decodedmessages_str;
 	}
 	
-	//######################################################################################
-	
 	public Codec()
 	{
 		String messages_string=new String("ILOVEYOUTOO");
@@ -61,7 +55,6 @@ public class Codec implements Serializable
 				
 				String msg_decoded=Decode(key_policy, msg_coded);
 				System.out.println("%%%%¡¾ÒëÂë½á¹û¡¿%%%% : "+msg_decoded);
-				//¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾¡¾
 			}else
 			{
 				System.out.println("¡¾±àÂëÊ§°Ü¡¿");
@@ -344,7 +337,6 @@ public class Codec implements Serializable
 	//public void coding(int codedmessages[1000],char codepolicy[100],char messages_character[1000],int messages_length)
 	String coding(char codepolicy[],char messages_character[],int messages_length)
 	{
-		//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 		int i,j=0,temp,num_column=2,column,num_row,lengthzong;
 		char temp_messages_character[]=new char[1000];
 		char temp_n[]=new char[1000];
@@ -408,7 +400,6 @@ public class Codec implements Serializable
 			messageok = 1;
 		}
 
-		//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 		//strcpy(temp_messages_character,messages_character); 
 		temp_messages_character=messages_char;
@@ -561,7 +552,6 @@ public class Codec implements Serializable
 		int mes_length=messages_length/10;
 		for(j=0;j<messages_length;j++)
 		{
-			//++++++++++++++++++++++++++++++++++++++++++
 			codedmessages_int[j]=codedmessages[j]-'0';
 		}
 		//lengthzong=strlen(codepolicy);
@@ -703,8 +693,6 @@ public class Codec implements Serializable
 				show_Codec_Info("");
 				//cout<<"\n";
 			}
-			//==========================================================================================
-			//******************************************************************************************
 			else if (codepolicy[j]=='d')    //²ßÂÔdÕ¤À¸£¬±ØÐëÊÇ×ÖÄ¸×ª×ÖÄ¸ ¡¾ÕâÀïÒëÂë³öÏÖ´íÎóÀ²¡¿
 			{
 				if (codepolicy[j+1]>'2'&&codepolicy[j+1]<='9')
@@ -744,8 +732,6 @@ public class Codec implements Serializable
 				show_Codec_Info("");
 				//cout<<"\n";
 			}
-			//******************************************************************************************
-			//==========================================================================================
 			else if (codepolicy[j]=='e')            //²ßÂÔeµ¹Ðò£¬±ØÐëÊÇ×ÖÄ¸×ª×ÖÄ¸
 			{
 

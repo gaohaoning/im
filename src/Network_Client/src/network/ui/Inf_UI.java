@@ -14,9 +14,7 @@ import java.awt.event.ActionEvent;
 
 public class Inf_UI
 {
-	// ======================================================================
 	public Network_Client network_Client;
-	// ======================================================================
 	public JFrame frame;
 	public JTextArea textArea;
 	public JButton button_OK;
@@ -50,12 +48,12 @@ public class Inf_UI
 	public Inf_UI()
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 	public Inf_UI(String string)
 	{
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 		textArea.setText(string);
 	}
 	public Inf_UI(Network_Client network_Client)
@@ -63,7 +61,7 @@ public class Inf_UI
 		this.network_Client = network_Client;
 		
 		initialize();
-		frame.setVisible(true);//============================================
+		frame.setVisible(true);//
 	}
 
 	/**
@@ -76,7 +74,6 @@ public class Inf_UI
 		//此处【注释掉】是不想让此UI被关闭时主程序也被关闭
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		//===================================================================
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBackground(Color.LIGHT_GRAY);
@@ -87,7 +84,6 @@ public class Inf_UI
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		//===================================================================
 		
 		button_OK = new JButton("OK");
 		button_OK.addActionListener(new ActionListener()

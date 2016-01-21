@@ -10,15 +10,10 @@ import network.ui.*;
 
 public class Network_Client
 {
-	//#######################################################################
 	public Codec codec;
-	//#######################################################################
 	public Socket socket;
 	public ObjectInputStream in_obj;
 	public ObjectOutputStream out_obj;
-	//#######################################################################
-	//#######################################################################
-	//#######################################################################
 	public Login_UI login_UI;
 	public Network_Client_UI network_Client_UI;
 	public Update_UI update_UI;
@@ -33,12 +28,9 @@ public class Network_Client
 	public String str_Client_Info_Reg;//以String方式维护用户ID和Name信息
 	
 	public Client_Thread client_Thread;//与服务器通信的线程
-	//#######################################################################################
 	public Network_Client()
 	{
-		//#######################################################################
 		codec=new Codec(this);
-		//#######################################################################
 		client_Info_Local = new Client_Info();
 		infos_Online = new Vector<Client_Info>();
 		infos_Reg = new Vector<Client_Info>();
@@ -49,7 +41,6 @@ public class Network_Client
 		update_UI=new Update_UI(this);//创建 GUI
 //		update_UI.frame.setVisible(false);
 	}
-	//#######################################################################################
 	public boolean init_Socket()
 	{
 		try
@@ -70,11 +61,8 @@ public class Network_Client
 			show_Login("【初始化连接】 异常");
 			return false;
 		}
-		show_Login("==================================================");
 		return true;
 	}
-	//#######################################################################################
-	//#######################################################################################
 	public boolean init_Socket(int port_Local)
 	{
 		try
@@ -96,10 +84,8 @@ public class Network_Client
 			show_Login("【初始化连接】 异常");
 			return false;
 		}
-		show_Login("==================================================");
 		return true;
 	}
-	//#######################################################################################
 	public void close_Socket(Thread thread)
 	{
 		try
@@ -121,8 +107,6 @@ public class Network_Client
 			show("close_Socket 异常");
 		}
 	}
-	//#######################################################################################
-	// ======================================================================
 	public void on_Btn_Login(String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);
@@ -137,7 +121,6 @@ public class Network_Client
 		
 		send_Msg_Login();		
 	}
-	// ======================================================================
 	public void on_Btn_Register(String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);		
@@ -152,11 +135,7 @@ public class Network_Client
 		
 		send_Msg_Register();
 	}
-	// ======================================================================
-	//#######################################################################################
 	
-	//#######################################################################################
-	// ======================================================================
 	public void on_Btn_Login(int port_Local,String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);
@@ -171,7 +150,6 @@ public class Network_Client
 		
 		send_Msg_Login();		
 	}
-	// ======================================================================
 	public void on_Btn_Register(int port_Local,String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);		
@@ -186,23 +164,18 @@ public class Network_Client
 		
 		send_Msg_Register();
 	}
-	// ======================================================================
-	//#######################################################################################
 	public void on_Btn_Edit()
 	{
 		update_UI.frame.setVisible(true);
 		update_UI.textField_id.setText(client_Info_Local.ID);
 	}
 	
-	//#######################################################################################
 	public void on_Button_Send_Update(Update_Info update_Info)
 	{
 		Msg msg_Update=new Msg(Msg_Type.user_data_update);
 		msg_Update.msg_Update_Info=update_Info;
 		send_Msg(msg_Update);
 	}
-	//#######################################################################################
-	//#######################################################################################
 	public boolean send_Msg(Msg msg)
 	{
 		try
@@ -216,12 +189,10 @@ public class Network_Client
 			return false;
 		}
 	}
-	//#######################################################################################
 	public void send_Msg_Login()
 	{
 		try
 		{
-			// ======================================================================
 			Msg msg=new Msg(Msg_Type.login);
 			msg.msg_Client_Info=new Client_Info();			
 			msg.msg_Content="This is a Login Request";
@@ -229,19 +200,16 @@ public class Network_Client
 			msg.msg_Client_Info.Password=login_Info.password_login;			
 			login_UI.show("Sending Msg : "+msg);
 			out_obj.writeObject(msg);
-			// ======================================================================
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 			login_UI.show("send_Msg_Login 异常");
 		}
 	}
-	//#######################################################################################
 	public void send_Msg_Register()
 	{
 		try
 		{
-			// ======================================================================
 			Msg msg=new Msg(Msg_Type.register);
 			msg.msg_Client_Info=new Client_Info();			
 			msg.msg_Content="This is a Register Request";
@@ -249,72 +217,53 @@ public class Network_Client
 			msg.msg_Client_Info.Password=login_Info.password_login;			
 			login_UI.show("Sending Msg : "+msg);
 			out_obj.writeObject(msg);
-			// ======================================================================
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 			login_UI.show("send_Msg_Register 异常");
 		}
 	}
-	//#######################################################################################
-	//#######################################################################################
 	public class Client_Thread extends Thread
 	{
-		//#######################################################################################
 		private long thread_ID = this.getId();
 		private String thread_Name = this.getName();
 		Msg msg_R;
-		//#######################################################################################
 		@Override
 		public void run()
 		{
-			//#######################################################################################
 			show_Login("【开始监听 Server 消息...】");
 			show_Login("【线程】ID : "+Long.toString(thread_ID)+" Name : "+thread_Name);
-			//#######################################################################################
 			try
 			{
 				while(true)
 				{
 					msg_R = (Msg) in_obj.readObject();					
-					show("==================================================");
 					show("收到【服务器消息】【类型】: " + msg_R.msg_Type);
-					show("==================================================");
 					
 					switch (msg_R.msg_Type)
 					{
 					case login_echo_accept:
-						// ======================================================================
 						show("登录成功 Login Success");
 						login_UI.frame.setVisible(false);//不可见 login_UI
 						network_Client_UI.frame.setVisible(true);
 						network_Client_UI.frame.setTitle("Client : "+login_Info.id_login);//标题栏予以标识不同客户端
 						break;
-						// ======================================================================						
 					case login_echo_reject:
-						// ======================================================================
 						show("登录失败 Login Failed");
 						close_Socket(this);
 						break;
-						// ======================================================================
 					case register_echo_accept:
-						// ======================================================================
 						show("注册成功 Register Success");
 						login_UI.frame.setVisible(false);//不可见 login_UI
 						network_Client_UI.frame.setVisible(true);
 						network_Client_UI.frame.setTitle("Client : "+login_Info.id_login);
 						break;
-						// ======================================================================
 					case register_echo_reject:
-						// ======================================================================
 						show("注册失败 Register Failed");
 						close_Socket(this);
 						break;
-						// ======================================================================
 					case users_update:
-						//#######################################################################
 						show("收到【在线】和【注册】用户更新信息 $$$$$$$$$$$$$$$$$$$$ : ");	
-						//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 用 String 更新客户端列表
 						show(msg_R.online_String);
 						show(msg_R.reg_String);
 						
@@ -323,37 +272,28 @@ public class Network_Client
 						
 						str_Client_Info_Online=msg_R.online_String;
 						str_Client_Info_Reg=msg_R.reg_String;
-						//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 用 String 更新客户端列表
-						//#######################################################################
-						//#######################################################################
 						break;
-						//#######################################################################
 						case kickedout:
-						// ======================================================================						
 						network_Client_UI.frame.setVisible(false);
 						close_Socket(this);
 						//show_UI_Dialog("【你被踢出】 \n"+" 原因: \n 1.相同ID用户异地登陆 \n 2.服务器踢你");
 						show_Msg("被踢", "【你被踢出】 \n"+" 原因: \n 1.相同ID用户异地登陆 \n 2.服务器踢你");
 						break;
-					    // ======================================================================
 					case broadcast:
 						show("收到【服务器广播】"+msg_R.toString());
 						show(msg_R.msg_Content);
 						show_Chat("【服务器广播】");
 						show_Chat(msg_R.msg_Content);
 						break;
-						// ======================================================================
 					case chat:
 						String str_chat="["+msg_R.senderID+":"+msg_R.senderName+"]对["
 								+msg_R.recieverID+":"+msg_R.recieverName+"]说 : "+msg_R.msg_Content;
 						show(str_chat);
 						show_Chat(str_chat);
 						break;
-						// ======================================================================
 					case chat_codec:
 						show_Chat_CODEC_Msg_on_textArea(msg_R);//在这里边做解码并显示
 						break;
-						// ======================================================================
 					case user_data_update:
 						show("收到【服务器端注册用户信息更新】");
 						show(msg_R.msg_Update_Info.user_ID);
@@ -362,15 +302,6 @@ public class Network_Client
 						show(msg_R.msg_Update_Info.user_Key);						
 						set_Server_Echo_Detail_To_Local_And_Update_UI(msg_R);
 						break;
-//					    // ======================================================================
-//						// ======================================================================
-//						// ======================================================================
-//						// ======================================================================
-//						// ======================================================================
-//						// ======================================================================
-//						// ======================================================================
-//						// ======================================================================
-//						// ======================================================================
 					default:
 						show("【未知信息类型】");
 					}
@@ -385,9 +316,6 @@ public class Network_Client
 			
 		}
 	}
-	// ======================================================================
-	//#######################################################################################
-	// ======================================================================
 	public void show_Chat_CODEC_Msg_on_textArea(Msg msg)//在这里边做解码并显示
 	{
 		//先显示收到密文
@@ -404,8 +332,6 @@ public class Network_Client
 		show(str_chat);
 		show_Chat(str_chat);
 	}
-	// ======================================================================
-	//#######################################################################################
 	public void set_Server_Echo_Detail_To_Local_And_Update_UI(Msg msg_R)
 	{
 		client_Info_Local.ID=msg_R.msg_Update_Info.user_ID;
@@ -422,15 +348,10 @@ public class Network_Client
 		
 		network_Client_UI.frame.setTitle(client_Info_Local.ID+":"+client_Info_Local.Name);
 	}
-	//#######################################################################################
-	//#######################################################################################
-	//#######################################################################################
-	//#######################################################################################
 	public static void main(String[] args)
 	{
 		new Network_Client();
 	}
-	//#######################################################################################
 	public void show(String string)
 	{
 		string=get_Time()+string;
@@ -455,20 +376,17 @@ public class Network_Client
 		System.out.println(string);
 		new Inf_UI(string);
 	}
-	//#######################################################################################
 	public void show_Chat(String string)
 	{
 		string=get_Time()+string;
 		network_Client_UI.show_Chat(string);
 	}
-	//#######################################################################################
 	public String get_Time()
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 		String str_time = simpleDateFormat.format(new Date());
 		return "["+str_time+"]";
 	}
-	//#######################################################################################
 	public void update_User_List_Online_by_String(String string)
 	{	
 		try
@@ -502,7 +420,6 @@ public class Network_Client
 			show("update_User_List_Reg_by_String 【更新 Reg】异常");
 		}
 	}
-	//#######################################################################################
 	public String get_Client_ID_Name_from_Str_Online_By_Index(int index)
 	{
 		String string_temp[]=str_Client_Info_Online.split(";");
@@ -513,36 +430,10 @@ public class Network_Client
 		String string_temp[]=str_Client_Info_Reg.split(";");
 		return string_temp[index];
 	}
-	//#######################################################################################
-	//#######################################################################################
-	// ======================================================================
 	public void show_Msg(String title,String msg)
 	{
 		JOptionPane optionPane=new JOptionPane();
 		optionPane.showConfirmDialog(null, msg, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 	}
-	// =======================================================================
 }
 
-////$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 用 Object [] 更新客户端列表
-//Object [] online=msg_R.online;
-//infos_Online.clear();
-//for(int i=0;i<online.length;i++)
-//{
-//	Client_Info info_temp=(Client_Info)online[i];
-//	infos_Online.addElement(info_temp);
-//}						
-//network_Client_UI.update_List_Online(infos_Online);
-//show("更新 Online List OK");
-////$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 用 Object [] 更新客户端列表
-//Object [] reg=msg_R.reg;
-//infos_Reg.clear();
-//for(int i=0;i<reg.length;i++)
-//{
-//	Client_Info info_temp=(Client_Info)reg[i];
-//	infos_Reg.addElement(info_temp);
-//}						
-//network_Client_UI.update_List_Reg(infos_Reg);
-//show("更新 Reg List OK");
-////$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 用 Object [] 更新客户端列表
-//#######################################################################

@@ -15,9 +15,7 @@ import java.net.InetAddress;
 
 public class Config_UI
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	private JFrame frame;
 	private JTextField textField_Ip;
 	private JTextField textField_Port;

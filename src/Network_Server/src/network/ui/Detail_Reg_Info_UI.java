@@ -27,9 +27,7 @@ import java.awt.event.MouseListener;
 
 public class Detail_Reg_Info_UI
 {
-	// ======================================================================
 	public Network_Server network_Server;
-	// ======================================================================
 	public JFrame frame;
 	
 	public AbstractTableModel abstractTableModel;
@@ -42,7 +40,6 @@ public class Detail_Reg_Info_UI
 	public JButton button_Search;
 	
 	public Vector<Client_Info> vector_UI;
-	// ======================================================================
 	/**
 	 * Launch the application.
 	 */
@@ -57,13 +54,11 @@ public class Detail_Reg_Info_UI
 					//表格显示分为【自己显示】和【被主程序显示】两种
 					//前者在static main 方法里初始化 Vector
 					//后者在构造函数里初始化 Vector
-//					//==============================================================
 //					final Vector<String> vector_UI=new Vector<String>();
 //					for(int i=0;i<20;i++)
 //					{
 //						vector_UI.addElement(Integer.toString(i));
 //					}
-//					//==============================================================
 					Detail_Reg_Info_UI window = new Detail_Reg_Info_UI();
 					window.frame.setVisible(true);
 				} catch (Exception e)
@@ -102,9 +97,6 @@ public class Detail_Reg_Info_UI
 		//此处【注释掉】是不想让此UI被关闭时主程序也被关闭
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		//===================================================================
-		//===================================================================
-		//===================================================================
 		abstractTableModel=new AbstractTableModel()
 		{
 			@Override
@@ -141,7 +133,6 @@ public class Detail_Reg_Info_UI
 				// TODO Auto-generated method stub
 				return 4;//竖排显示4列资料 暂时
 			}
-			//======================================================
 			@Override
 			public void addTableModelListener(TableModelListener l)
 			{
@@ -185,9 +176,7 @@ public class Detail_Reg_Info_UI
 		table.setGridColor(Color.BLACK);
 		table.setAutoscrolls(true);
 		table.setShowGrid(true);
-		//==============================================
 		//table.getSelectedRow();
-		//==============================================
 		
 		scrollPane = new JScrollPane(table);// scrollPane 包含 table
 		//scrollPane.setBounds(10, 10, 420, 200);
@@ -195,9 +184,6 @@ public class Detail_Reg_Info_UI
 		scrollPane.setAutoscrolls(true);
 		scrollPane.setAutoscrolls(true);
 		frame.getContentPane().add(scrollPane);
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 		
 		button_Add= new JButton("增加");
 		button_Add.addActionListener(new ActionListener()
@@ -229,16 +215,10 @@ public class Detail_Reg_Info_UI
 			{
 				//删除哪一行需要从 【 table.getSelectedRow() 】 获得参数
 				network_Server.infos_Reg.removeElementAt(table.getSelectedRow());
-				//==========================================================
 				network_Server.network_Server_UI.tabbedPane_Info.updateUI();//用此方法立即刷新列表 无延迟
-				//==========================================================
-				//==========================================================
 				network_Server.network_Server_UI.update_List_Online(network_Server.infos_Online);
 				network_Server.network_Server_UI.update_List_Reg(network_Server.infos_Reg);
-				//==========================================================
-				//==========================================================
 				network_Server.send_Broadcast_Client_Info_Online_Reg();
-				//==========================================================
 			}
 		});
 		button_Delete.setBounds(240, 220, 115, 30);
@@ -254,14 +234,6 @@ public class Detail_Reg_Info_UI
 		});
 		button_Search.setBounds(355, 220, 115, 30);
 		frame.getContentPane().add(button_Search);
-		
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
-		// ===================================================================
 		
 	}
 }
