@@ -3,7 +3,7 @@ package network.codec;
 import java.io.Serializable;
 import java.lang.String;
 
-import network.client.Network_Client_Line;
+import network.server.Network_Server;
 
 public class Codec implements Serializable
 {
@@ -12,7 +12,7 @@ public class Codec implements Serializable
 	char QWE_coding_table[]={'q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'};
 	char QWE_decoded_table[]={'k','x','v','m','c','n','o','p','h','q','r','s','z','y','i','j','a','d','l','e','g','w','b','u','f','t'};
 
-	public Network_Client_Line network_Client;
+	public Network_Server network_Server;
 	char codepolicy[]=new char[100];
 	char messages[]=new char[1000];
 	
@@ -62,9 +62,9 @@ public class Codec implements Serializable
 		}
 	}
 
-	public Codec(Network_Client_Line network_Client)
+	public Codec(Network_Server network_Server)
 	{
-		this.network_Client = network_Client;
+		this.network_Server = network_Server;
 	}
 
 	int i,j=0,messages_length,lengthzong,codeok=0,messageok=0;
@@ -521,12 +521,12 @@ public class Codec implements Serializable
 	public void show_Codec_Info(String string)
 	{
 			System.out.println(string);
-			network_Client.show(string);
+			network_Server.show(string);
 	}
 	
 	public void show_Codec_Info(String string,int mode)
 	{
 		System.out.print(string);
-		network_Client.show_(string);
+		network_Server.show_(string);
 	}
 }

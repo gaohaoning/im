@@ -26,6 +26,7 @@ public class Network_Server
 	public Detail_Reg_Info_UI detail_Reg_Info_UI;
 	public Detail_Online_Info_UI detail_Online_Info_UI;
 	public Inf_UI inf_UI;
+	
 	public boolean read_Infos_Reg_Default()//这里先从在本地设置 然后加上是从文件中读取和写入功能
 	{
 		try
@@ -54,6 +55,7 @@ public class Network_Server
 			return false;
 		}
 	}
+	
 	public boolean write_User_Info_Reg_to_File(String file_String)//将【注册用户】信息 保存
 	{
 		try
@@ -425,6 +427,7 @@ public class Network_Server
 		}
 		return false;// 数据库中无此用户资料，则认证失败
 	}
+	
 	public boolean user_Verification_Register(Client_Info client_Info)// 用户这侧认证
 	{
 		for (int i = 0; i < infos_Reg.size(); i++)
@@ -836,32 +839,34 @@ public class Network_Server
 				show("server_Msg_Handler_User_Data_Update 异常");
 				return false;
 			}
-		}
-		
-		
+		}	
 	}
 	
 	public static void main(String[] args)
 	{
 		new Network_Server();
 	}
+	
 	public void show(String string)
 	{
 		string=get_Time()+string;
 		System.out.println(string);
 		network_Server_UI.show(string);
 	}
+	
 	public void show_(String string)//不换行输出
 	{
 		System.out.print(string);
 		network_Server_UI.show_(string);
 	}
+	
 	public void show_UI_Dialog(String string)//以对话框方式显示提示信息
 	{
 		string=get_Time()+string;
 		System.out.println(string);
 		new Inf_UI(string);
 	}
+	
 	public void show_Num_of_server_Threads_clientInfos_online()
 	{
 		int num1=server_Threads.size();
@@ -870,12 +875,14 @@ public class Network_Server
 		network_Server_UI.textField_broadcast.setText("[服务器端] 用户线程数 :"+Integer.toString(num1)
 				+"[在线用户数] : "+Integer.toString(num2));
 	}
+	
 	public String get_Time()
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 		String str_time = simpleDateFormat.format(new Date());
 		return "["+str_time+"]";
 	}
+	
 	public void generate_Str_Client_Info_Online()
 	{
 		str_Client_Info_Online="";
@@ -895,6 +902,7 @@ public class Network_Server
 					+infos_Reg.elementAt(i).Name+";";
 		}
 	}
+	
 	public void show_Msg(String title,String msg)
 	{
 		JOptionPane optionPane=new JOptionPane();
