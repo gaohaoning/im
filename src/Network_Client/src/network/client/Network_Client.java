@@ -17,30 +17,26 @@ public class Network_Client
 	public Login_UI login_UI;
 	public Network_Client_UI network_Client_UI;
 	public Update_UI update_UI;
-	
 	public Login_Info login_Info;//【本地用户登陆信息】
 	public String key_Codec_Local;//【本地用户加密信息】//只有当本地用户修改了资料并同步到服务器了才给它赋值
-	
 	public Client_Info client_Info_Local;//【本地用户】信息
 	public Vector<Client_Info> infos_Online;// 所有【在线用户】可以动态修改
 	public Vector<Client_Info> infos_Reg;// 所有【注册用户】初始时从文件读取
 	public String str_Client_Info_Online;//以String方式维护用户ID和Name信息
 	public String str_Client_Info_Reg;//以String方式维护用户ID和Name信息
-	
 	public Client_Thread client_Thread;//与服务器通信的线程
+	
 	public Network_Client()
 	{
 		codec=new Codec(this);
 		client_Info_Local = new Client_Info();
 		infos_Online = new Vector<Client_Info>();
 		infos_Reg = new Vector<Client_Info>();
-		
 		login_UI=new Login_UI(this);//创建 GUI
 		network_Client_UI=new Network_Client_UI(this);//创建 GUI
-//		network_Client_UI.frame.setVisible(false);
 		update_UI=new Update_UI(this);//创建 GUI
-//		update_UI.frame.setVisible(false);
 	}
+	
 	public boolean init_Socket()
 	{
 		try
@@ -63,6 +59,7 @@ public class Network_Client
 		}
 		return true;
 	}
+	
 	public boolean init_Socket(int port_Local)
 	{
 		try
@@ -86,6 +83,7 @@ public class Network_Client
 		}
 		return true;
 	}
+	
 	public void close_Socket(Thread thread)
 	{
 		try
@@ -107,6 +105,7 @@ public class Network_Client
 			show("close_Socket 异常");
 		}
 	}
+	
 	public void on_Btn_Login(String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);
@@ -121,6 +120,7 @@ public class Network_Client
 		
 		send_Msg_Login();		
 	}
+	
 	public void on_Btn_Register(String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);		
@@ -150,6 +150,7 @@ public class Network_Client
 		
 		send_Msg_Login();		
 	}
+	
 	public void on_Btn_Register(int port_Local,String address_server_str, String port_server,String id_login, String password_login)
 	{
 		login_Info=new Login_Info(address_server_str, port_server, id_login, password_login);		
@@ -164,6 +165,7 @@ public class Network_Client
 		
 		send_Msg_Register();
 	}
+	
 	public void on_Btn_Edit()
 	{
 		update_UI.frame.setVisible(true);
@@ -176,6 +178,7 @@ public class Network_Client
 		msg_Update.msg_Update_Info=update_Info;
 		send_Msg(msg_Update);
 	}
+	
 	public boolean send_Msg(Msg msg)
 	{
 		try
@@ -189,6 +192,7 @@ public class Network_Client
 			return false;
 		}
 	}
+	
 	public void send_Msg_Login()
 	{
 		try
@@ -206,6 +210,7 @@ public class Network_Client
 			login_UI.show("send_Msg_Login 异常");
 		}
 	}
+	
 	public void send_Msg_Register()
 	{
 		try
@@ -223,6 +228,7 @@ public class Network_Client
 			login_UI.show("send_Msg_Register 异常");
 		}
 	}
+	
 	public class Client_Thread extends Thread
 	{
 		private long thread_ID = this.getId();
@@ -316,6 +322,7 @@ public class Network_Client
 			
 		}
 	}
+	
 	public void show_Chat_CODEC_Msg_on_textArea(Msg msg)//在这里边做解码并显示
 	{
 		//先显示收到密文
@@ -332,6 +339,7 @@ public class Network_Client
 		show(str_chat);
 		show_Chat(str_chat);
 	}
+	
 	public void set_Server_Echo_Detail_To_Local_And_Update_UI(Msg msg_R)
 	{
 		client_Info_Local.ID=msg_R.msg_Update_Info.user_ID;
@@ -348,10 +356,12 @@ public class Network_Client
 		
 		network_Client_UI.frame.setTitle(client_Info_Local.ID+":"+client_Info_Local.Name);
 	}
+	
 	public static void main(String[] args)
 	{
 		new Network_Client();
 	}
+	
 	public void show(String string)
 	{
 		string=get_Time()+string;
@@ -359,34 +369,40 @@ public class Network_Client
 		network_Client_UI.show(string);
 		login_UI.show(string);
 	}
+	
 	public void show_(String string)//不换行输出
 	{
 		System.out.print(string);
 		network_Client_UI.show_(string);
 	}
+	
 	public void show_Login(String string)
 	{
 		string=get_Time()+string;
 		System.out.println(string);
 		login_UI.show(string);
 	}
+	
 	public void show_UI_Dialog(String string)//以对话框方式显示提示信息
 	{
 		string=get_Time()+string;
 		System.out.println(string);
 		new Inf_UI(string);
 	}
+	
 	public void show_Chat(String string)
 	{
 		string=get_Time()+string;
 		network_Client_UI.show_Chat(string);
 	}
+	
 	public String get_Time()
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 		String str_time = simpleDateFormat.format(new Date());
 		return "["+str_time+"]";
 	}
+	
 	public void update_User_List_Online_by_String(String string)
 	{	
 		try
@@ -420,20 +436,22 @@ public class Network_Client
 			show("update_User_List_Reg_by_String 【更新 Reg】异常");
 		}
 	}
+	
 	public String get_Client_ID_Name_from_Str_Online_By_Index(int index)
 	{
 		String string_temp[]=str_Client_Info_Online.split(";");
 		return string_temp[index];
 	}
+	
 	public String get_Client_ID_Name_from_Str_Reg_By_Index(int index)
 	{
 		String string_temp[]=str_Client_Info_Reg.split(";");
 		return string_temp[index];
 	}
+	
 	public void show_Msg(String title,String msg)
 	{
 		JOptionPane optionPane=new JOptionPane();
 		optionPane.showConfirmDialog(null, msg, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 	}
 }
-

@@ -134,7 +134,6 @@ public class Network_Server
 				}
 			}
 		}
-		
 		return false;
 	}
 
@@ -157,7 +156,6 @@ public class Network_Server
 			detail_Online_Info_UI.frame.setVisible(false);
 			server_Socket = new ServerSocket(server_Port);
 			show("【服务器初始化】【端口】 : "+server_Port+"【成功】");
-			
 			Socket incoming;
 			while (true)
 			{			
@@ -190,8 +188,7 @@ public class Network_Server
 			detail_Online_Info_UI=new Detail_Online_Info_UI(this);
 			detail_Online_Info_UI.frame.setVisible(false);
 			server_Socket = new ServerSocket(server_Port);
-			show("【服务器初始化】【端口】 : "+server_Port+"【成功】");
-			
+			show("【服务器初始化】【端口】 : "+server_Port+"【成功】");	
 			Socket incoming;
 			while (true)
 			{			
@@ -387,6 +384,7 @@ public class Network_Server
 				return false;
 			}
 		}
+		
 		synchronized public void send_Detail_Update_Info_Back_To_Login_User(Msg msg)
 		{
 			Msg msg_Update_Info=new Msg(Msg_Type.user_data_update);
@@ -408,7 +406,6 @@ public class Network_Server
 					msg_Update_Info.msg_Update_Info.user_Key=infos_Reg.elementAt(i).Key;								
 				}
 			}
-			
 			send_Unicast(msg_Update_Info);			
 		}
 	}
@@ -683,6 +680,7 @@ public class Network_Server
 				show("close_Socket_Inside_Thread 异常");
 			}
 		}
+		
 		synchronized public void remove_Thread_Inside_Thread()
 		{
 			try
@@ -694,6 +692,7 @@ public class Network_Server
 				show("remove_Thread_Inside_Thread 异常");
 			}
 		}
+		
 		synchronized public void remove_Info_Online_Inside_Thread()
 		{
 			try
@@ -712,6 +711,7 @@ public class Network_Server
 				show("remove_Info_Online_Inside_Thread 异常");
 			}
 		}
+		
 		synchronized public void KickOut_User_Inside_Thread()
 		{
 			Msg msg_Kickout=new Msg(Msg_Type.kickedout);
@@ -723,6 +723,7 @@ public class Network_Server
 			network_Server_UI.update_List_Online(infos_Online);
 			network_Server_UI.update_List_Reg(infos_Reg);
 		}
+		
 		synchronized public boolean server_Msg_Handler_Chat(Msg msg)
 		{
 			try
@@ -744,6 +745,7 @@ public class Network_Server
 				return false;
 			}
 		}
+		
 		synchronized public boolean server_Msg_Handler_Chat_Codec(Msg msg)
 		{
 			try
@@ -809,6 +811,7 @@ public class Network_Server
 				return false;
 			}
 		}
+		
 		synchronized public boolean server_Msg_Handler_User_Data_Update(Msg msg)
 		{
 			try
